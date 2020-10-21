@@ -1,0 +1,34 @@
+import { Direction } from "../../enums/Direction";
+import { IMapSite } from "../../interfaces/IMapSite";
+import { IRoom } from "../../interfaces/IRoom";
+
+export class Room implements IRoom {
+    roomNumber: Number;
+    // el 4 es el length
+    sides: Array<IMapSite> = new Array<IMapSite>(4);
+
+    constructor(roomNumber: Number) {
+        this.roomNumber = roomNumber
+    }
+
+    setSide(direction: Direction, mapSite: IMapSite) {
+        // Podria guardar esta logica en algun lugar
+         switch(direction) {
+            case Direction.Up:
+                this.sides.splice(0, 1, mapSite);
+                break;
+            case Direction.Right:
+                this.sides.splice(1, 1, mapSite);
+                break;
+            case Direction.Down:
+                this.sides.splice(2, 1, mapSite);
+                break;
+            case Direction.Left:
+                this.sides.splice(3, 1, mapSite);
+                break;
+            default:
+                console.log("Error al introducir mapSite");
+                break;
+         }
+    }
+}
